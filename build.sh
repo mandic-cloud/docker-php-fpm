@@ -1,6 +1,6 @@
 #!/bin/bash
 INAME="mandic/php"
-FLAVORS="5.4-fpm/coffe 5.6-fpm/peach 5.6-fpm/bacon"
+FLAVORS="5.3-fpm/garlic 5.3-fpm/oyster 5.4-fpm/coffe 5.6-fpm/peach 5.6-fpm/bacon"
 mkdir -p logs
 for F in $FLAVORS; do
 	T=${F/\//\-}

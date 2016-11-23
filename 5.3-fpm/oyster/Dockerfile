@@ -1,4 +1,4 @@
-FROM php:5.6-fpm
+FROM mandic/php:5.3-fpm-garlic
 
 MAINTAINER wagnerpinheiro
 
@@ -7,13 +7,19 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y \
         git \
         vim \
+        curl \
         libcurl3-dev \
+        libcurl4-openssl-dev \
         libedit-dev \
         libfreetype6-dev \
-        libjpeg62-turbo-dev \
+        libjpeg62-dev \
+        libgmp-dev \
+        libicu-dev \        
         libldap2-dev \
         libmcrypt-dev \
+        libmemcached-dev \
         libmysqlclient18 \
+        libncurses5-dev \
         libpng12-dev \
         libpq-dev \
         libpspell-dev \
@@ -21,17 +27,22 @@ RUN apt-get update && apt-get install -y \
         libssl-dev \
         libxml2-dev \
         libz-dev \
+        php-pear \
+        ssmtp \
         unixodbc-dev \
         zip \
-        zlib1g-dev
+        zlib1g-dev        
 
 # https://bugs.php.net/bug.php?id=49876
 RUN ln -fs /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/
 
 RUN echo "Installing PHP extensions" \
-    && docker-php-ext-install iconv mcrypt gd pdo_mysql pdo_pgsql pcntl zip bcmath simplexml xmlrpc soap pspell ldap mbstring \
+    && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
+    && docker-php-ext-configure mysql --with-mysql=mysqlnd \
+    && docker-php-ext-configure mysqli --with-mysqli=mysqlnd \
+    && docker-php-ext-install iconv mcrypt gd pdo_mysql pdo_pgsql pcntl bcmath simplexml xmlrpc soap pspell ldap mbstring \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-enable iconv mcrypt gd pdo_mysql pdo_pgsql pcntl zip bcmath simplexml xmlrpc soap pspell ldap mbstring 
+    && docker-php-ext-enable iconv mcrypt gd pdo_mysql pdo_pgsql pcntl bcmath simplexml xmlrpc soap pspell ldap mbstring 
 
 RUN pecl install xdebug-2.2.7 \
 	&& docker-php-ext-enable xdebug
@@ -68,7 +79,7 @@ RUN apt-get install libxslt-dev -y
 RUN docker-php-ext-install xsl
 
 RUN pecl install zip-1.12.4
-RUN docker-php-ext-install zip
+RUN docker-php-ext-enable zip.so
 
 RUN pecl install mongo-1.2.10
 RUN docker-php-ext-enable mongo.so
