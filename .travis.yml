@@ -1,3 +1,4 @@
+sudo: required
 language: bash
 services: 
   - docker
@@ -9,7 +10,7 @@ matrix:
     
 
 script: 
-  - "docker build -t 'mandic/php:${VERSION}-${VARIANT}-${FLAVOR}' ${VERSION}-${VARIANT}/${FLAVOR}"
+  - docker build -t "mandic/php:${VERSION}-${VARIANT}-${FLAVOR}" "${VERSION}-${VARIANT}/${FLAVOR}"
 
 after_script:
   - docker images
