@@ -1,5 +1,6 @@
-group: edge
 sudo: required
+group: edge
+dist: trusty
 language: bash
 services: 
   - docker
