@@ -8,8 +8,8 @@ matrix:
     - env: VERSION=5.4 VARIANT=fpm FLAVOR=coffe
     - env: VERSION=5.6 VARIANT=fpm FLAVOR=peach
 
-script: 
+install: 
   - docker build -t "mandic/php:${VERSION}-${VARIANT}-${FLAVOR}" ${VERSION}-${VARIANT}/${FLAVOR}
 
-after_script:
+script:
   - docker images
