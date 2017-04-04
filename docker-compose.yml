@@ -1,0 +1,40 @@
+version: '2'
+services:
+  nginx:
+    image: nginx
+    container_name: app-nginx
+    ports:
+      - "80:80"
+    volumes:        
+      - .:/src/
+      - ./conf/nginx.conf.sample:/etc/nginx/conf.d/default.conf
+    #  - ./conf/nginx.conf.sample56:/etc/nginx/conf.d/host56.conf
+    depends_on:
+      - php-fpm
+    #  - php-fpm-56
+    links:
+      - php-fpm
+    #  - php-fpm-56
+  php-fpm:
+    # build: config/docker/php-fpm
+    # image: mmm/php-fpm    
+    image: mandic/php:5.3-fpm-oyster
+    # image: mandic/php:5.4-fpm-coffe
+    # image: mandic/php:5.6-fpm-bacon
+    container_name: app-php-fpm
+    volumes:
+      - .:/src/
+      - ./conf/php.ini.sample:/usr/local/etc/php/php.ini
+    #extra_hosts:
+    #  - ""
+    # todo: executar deplopy.sh
+    # command: ["/src/deploy.sh"]
+
+  ## uncomment to enable a second php-fpm service
+  #php-fpm-56:
+  #  image: mandic/php:5.6-fpm-bacon
+  #  container_name: app-php-fpm-56
+  #  volumes:
+  #    - .:/src/
+  #    - ./conf/php.ini.sample:/usr/local/etc/php/php.ini
+    

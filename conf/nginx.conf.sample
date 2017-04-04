@@ -1,0 +1,46 @@
+add_header X-Backend-Server $hostname always;
+
+server {
+    listen 80;
+    index index.php index.html;
+    server_name localhost;
+    error_log  /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;    
+    root /src/web;
+
+    location / {
+        try_files $uri /index.php;
+    }
+
+    # se contem ?xyz passa como parametro para index.php
+    if ($request_uri ~ "^(.+\?)(.+)") {
+       rewrite ^/$ /index.php/$1;
+    }
+
+    # expira no tempo limite
+    #location ~* \.(js|css|png|jpg|jpeg|gif|ico|swf)$ {
+    #        expires max;
+    #}
+
+    location ~ \.php($|/) {
+        
+        set  $script $uri;
+        set  $path_info "";
+
+        if ($uri ~ "^(.+\.php)(/.*)") {
+           set  $script     $1;
+           set  $path_info  $2;
+        }
+
+        include fastcgi_params;
+        fastcgi_param  PATH_INFO         $path_info;
+        fastcgi_param  SCRIPT_FILENAME   $document_root$script;
+        fastcgi_param  SCRIPT_NAME       $script;
+        fastcgi_param  HTTPS off;
+        fastcgi_pass  php-fpm:9000;
+        fastcgi_keep_conn on;
+        fastcgi_intercept_errors on;
+
+    }
+    
+}
