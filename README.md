@@ -1,7 +1,14 @@
 [![Build Status](https://travis-ci.org/mandic-cloud/docker-php-fpm.svg?branch=master)](https://travis-ci.org/mandic-cloud/docker-php-fpm)
 
 # docker-php-fpm
-Dockerfiles for PHP Flavors
+
+Dockerfiles for PHP Flavors.
+
+
+Follow the:
+
+- [Travis Build Images](https://travis-ci.org/mandic-cloud/docker-php-fpm)
+- [Docker Hub Registry Images](https://hub.docker.com/r/mandic/php/)
 
 
 ## Usage:
