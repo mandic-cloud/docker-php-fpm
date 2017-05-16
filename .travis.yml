@@ -11,6 +11,7 @@ matrix:
   - env: VERSION=5.4 VARIANT=fpm FLAVOR=coffe
   - env: VERSION=5.6 VARIANT=fpm FLAVOR=peach
   - env: VERSION=5.6 VARIANT=fpm FLAVOR=bacon
+  - env: VERSION=5.6 VARIANT=fpm FLAVOR=rice
 install:
 - docker build -t "mandic/php:${VERSION}-${VARIANT}-${FLAVOR}" ${VERSION}-${VARIANT}/${FLAVOR}
 script:
