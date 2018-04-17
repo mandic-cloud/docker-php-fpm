@@ -73,7 +73,4 @@ RUN docker-php-ext-enable zip.so
 RUN pecl install mongo-1.2.10
 RUN docker-php-ext-enable mongo.so
 
-RUN pecl install apc-3.1.13
-RUN docker-php-ext-enable apc.so
-
 COPY conf/php.ini /usr/local/etc/php/php.ini

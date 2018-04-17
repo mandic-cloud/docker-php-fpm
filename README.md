@@ -23,6 +23,8 @@ docker-compose up
 
 - [5.3-fpm/garlic](5.3-fpm/garlic): minimal version;
 - [5.3-fpm/oyster](5.3-fpm/oyster): extends the garlic flavor with multiples php modules;
+- [5.3-fpm/oyster-apc](5.3-fpm/oyster-apc): extends the oyster with apc module;
+- [5.3-fpm/coconut](5.3-fpm/coconut): extends the oyster with dba and mssql module;
 - [5.4-fpm/coffe](5.4-fpm/coffe): php 5.4 with some basic modules;
 - [5.6-fpm/peach](5.6-fpm/peach): minimal version with pdo_pgsql;
 - [5.6-fpm/bacon](5.6-fpm/bacon): standard flavor with a lot of modules;
