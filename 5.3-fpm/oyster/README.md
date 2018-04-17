@@ -33,5 +33,3 @@ Extensions from pecl:
 - mongo-1.2.10
 - xdebug-2.2.7
 - zip-1.12.4
-- apc-3.1.13
-
