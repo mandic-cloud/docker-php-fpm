@@ -1,6 +1,6 @@
-# mandic/php:7.0-fpm-cherry
+# mandic/php:5.6-fpm-rice
 
-PHP-FPM 7.0 with extensions and locales configured.
+PHP-FPM 5.6 with extensions and locales configured.
 
 Extensions from debian repository:
 
@@ -12,7 +12,7 @@ Extensions from debian repository:
 - ldap
 - mbstring
 - mcrypt
-- mysqli
+- mysql
 - pcntl
 - pdo_mysql
 - pdo_pgsql
@@ -28,11 +28,11 @@ Extensions from debian repository:
 
 Extensions from pecl:
 
-- gnupg-1.4.0
-- memcached-3.0.4 (pecl memcache is not supported in php 7.0)
-- mongodb-1.4.2 (pecl mongo is not supported in php 7.0)
-- xdebug-2.5.5
-- zip-1.13.5
+- gnupg-1.3.3
+- memcache-2.2.5
+- mongo-1.2.10
+- xdebug-2.2.7
+- zip-1.12.4
 
 
 Locales:

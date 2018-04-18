@@ -8,6 +8,7 @@ matrix:
   include:
   - env: VERSION=5.3 VARIANT=fpm FLAVOR=garlic
   - env: VERSION=5.3 VARIANT=fpm FLAVOR=oyster
+  - env: VERSION=5.3 VARIANT=fpm FLAVOR=oyster-nr
   - env: VERSION=5.3 VARIANT=fpm FLAVOR=oyster-apc
   - env: VERSION=5.3 VARIANT=fpm FLAVOR=coconut
   - env: VERSION=5.4 VARIANT=fpm FLAVOR=coffe
@@ -16,6 +17,9 @@ matrix:
   - env: VERSION=5.6 VARIANT=fpm FLAVOR=rice
   - env: VERSION=5.6 VARIANT=fpm FLAVOR=rice-nr
   - env: VERSION=7.0 VARIANT=fpm FLAVOR=cherry
+  - env: VERSION=7.0 VARIANT=fpm FLAVOR=cherry-nr
+  - env: VERSION=7.1 VARIANT=fpm FLAVOR=mango
+  - env: VERSION=7.1 VARIANT=fpm FLAVOR=mango-nr
 install:
 - docker build -t "mandic/php:${VERSION}-${VARIANT}-${FLAVOR}" ${VERSION}-${VARIANT}/${FLAVOR}
 script:

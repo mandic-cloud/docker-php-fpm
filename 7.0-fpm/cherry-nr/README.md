@@ -1,6 +1,6 @@
-# mandic/php:7.0-fpm-cherry
+# mandic/php:7.0-fpm-cherry-nr
 
-PHP-FPM 7.0 with extensions and locales configured.
+PHP-FPM 7.0 with extensions, locales nad newrelic php agent configured.
 
 Extensions from debian repository:
 
