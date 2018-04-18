@@ -40,9 +40,9 @@ RUN echo "Installing PHP extensions" \
     && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
     && docker-php-ext-configure mysql --with-mysql=mysqlnd \
     && docker-php-ext-configure mysqli --with-mysqli=mysqlnd \
-    && docker-php-ext-install iconv mcrypt gd pdo_mysql pdo_pgsql pcntl bcmath simplexml xmlrpc soap pspell ldap mbstring mysql pgsql sysvmsg sysvsem sysvshm gettext \
+    && docker-php-ext-install iconv mcrypt gd pdo_mysql pdo_pgsql pcntl bcmath simplexml xmlrpc soap pspell ldap mbstring mysql mysqli pgsql sysvmsg sysvsem sysvshm gettext \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-enable iconv mcrypt gd pdo_mysql pdo_pgsql pcntl bcmath simplexml xmlrpc soap pspell ldap mbstring mysql pgsql sysvmsg sysvsem sysvshm gettext
+    && docker-php-ext-enable iconv mcrypt gd pdo_mysql pdo_pgsql pcntl bcmath simplexml xmlrpc soap pspell ldap mbstring mysql mysqli pgsql sysvmsg sysvsem sysvshm gettext
 
 RUN pecl install xdebug-2.2.7 \
 	&& docker-php-ext-enable xdebug
