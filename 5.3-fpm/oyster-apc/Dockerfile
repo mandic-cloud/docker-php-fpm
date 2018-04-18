@@ -4,5 +4,5 @@ MAINTAINER wagnerpinheiro
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN pecl install apc-3.1.13
-RUN docker-php-ext-enable apc.so
+RUN pecl install apc-3.1.13 \
+    && docker-php-ext-enable apc.so

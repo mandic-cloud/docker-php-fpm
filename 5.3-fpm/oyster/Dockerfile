@@ -40,9 +40,9 @@ RUN echo "Installing PHP extensions" \
     && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
     && docker-php-ext-configure mysql --with-mysql=mysqlnd \
     && docker-php-ext-configure mysqli --with-mysqli=mysqlnd \
-    && docker-php-ext-install iconv mcrypt gd pdo_mysql pdo_pgsql pcntl bcmath simplexml xmlrpc soap pspell ldap mbstring \
+    && docker-php-ext-install iconv mcrypt gd pdo_mysql pdo_pgsql pcntl bcmath simplexml xmlrpc soap pspell ldap mbstring mysql pgsql sysvmsg sysvsem sysvshm gettext \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-enable iconv mcrypt gd pdo_mysql pdo_pgsql pcntl bcmath simplexml xmlrpc soap pspell ldap mbstring 
+    && docker-php-ext-enable iconv mcrypt gd pdo_mysql pdo_pgsql pcntl bcmath simplexml xmlrpc soap pspell ldap mbstring mysql pgsql sysvmsg sysvsem sysvshm gettext
 
 RUN pecl install xdebug-2.2.7 \
 	&& docker-php-ext-enable xdebug
@@ -50,38 +50,32 @@ RUN pecl install xdebug-2.2.7 \
 RUN pecl install memcache-2.2.5 \
 	&& docker-php-ext-enable memcache
 
-# install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/bin
-ENV PATH /root/.composer/vendor/bin:$PATH
-
 RUN apt-get -y install libssl-dev libc-client2007e-dev libkrb5-dev \
     && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
     && docker-php-ext-install imap \    
     && docker-php-ext-enable imap
 
-RUN docker-php-ext-install gettext
-
 # Install php-gnupg
-RUN apt-get install -y libgpgme11-dev
-# RUN pecl install gnupg-1.3.2 # 1.3.2 ta bugado
-RUN pecl install gnupg-1.3.3
-RUN docker-php-ext-enable gnupg.so
+RUN apt-get install -y libgpgme11-dev \
+    && pecl install gnupg-1.3.3 \
+    && docker-php-ext-enable gnupg.so
 
-RUN docker-php-ext-install mysql
-RUN docker-php-ext-install pgsql
+RUN apt-get install libtidy-dev -y \
+    && docker-php-ext-install tidy \
+    && docker-php-ext-enable tidy \
 
-RUN docker-php-ext-install sysvmsg sysvsem sysvshm 
+RUN apt-get install libxslt-dev -y \
+    && docker-php-ext-install xsl \
+    && docker-php-ext-enable xsl 
 
-RUN apt-get install libtidy-dev -y
-RUN docker-php-ext-install tidy
+RUN pecl install zip-1.12.4 \
+    && docker-php-ext-enable zip.so
 
-RUN apt-get install libxslt-dev -y
-RUN docker-php-ext-install xsl
+RUN pecl install mongo-1.2.10 \
+    && docker-php-ext-enable mongo.so
 
-RUN pecl install zip-1.12.4
-RUN docker-php-ext-enable zip.so
-
-RUN pecl install mongo-1.2.10
-RUN docker-php-ext-enable mongo.so
+# install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/bin
+ENV PATH /root/.composer/vendor/bin:$PATH
 
 COPY conf/php.ini /usr/local/etc/php/php.ini
