@@ -62,7 +62,7 @@ RUN apt-get install -y libgpgme11-dev \
 
 RUN apt-get install libtidy-dev -y \
     && docker-php-ext-install tidy \
-    && docker-php-ext-enable tidy \
+    && docker-php-ext-enable tidy
 
 RUN apt-get install libxslt-dev -y \
     && docker-php-ext-install xsl \
