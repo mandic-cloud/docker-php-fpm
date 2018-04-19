@@ -20,7 +20,6 @@ services:
     # image: mmm/php-fpm    
     image: mandic/php:5.3-fpm-oyster
     # image: mandic/php:5.4-fpm-coffe
-    # image: mandic/php:5.6-fpm-bacon
     # image: mandic/php:5.6-fpm-rice
     # image: mandic/php:7.0-fpm-cherry
     container_name: app-php-fpm
@@ -39,4 +38,22 @@ services:
   #  volumes:
   #    - .:/src/
   #    - ./conf/php.ini.sample:/usr/local/etc/php/php.ini
-    
+  mysql:
+    image: mysql
+    # restart: always
+    ports:
+      - "3306:3306"
+    container_name: app-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql:db
+    ports:
+      - "8081:80"
+    container_name: app-phpmyadmin
+    environment:
+      - PMA_USER=root
+      - PMA_PASSWORD=password
+      - PHP_UPLOAD_MAX_FILESIZE=100MB
