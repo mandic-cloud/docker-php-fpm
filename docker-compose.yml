@@ -18,10 +18,12 @@ services:
   php-fpm:
     # build: config/docker/php-fpm
     # image: mmm/php-fpm    
-    image: mandic/php:5.3-fpm-oyster
+    # image: mandic/php:5.3-fpm-oyster-apc
     # image: mandic/php:5.4-fpm-coffe
     # image: mandic/php:5.6-fpm-rice
     # image: mandic/php:7.0-fpm-cherry
+    # image: mandic/php:7.1-fpm-mango
+    image: mandic/php:7.2-fpm-ripple
     container_name: app-php-fpm
     volumes:
       - .:/src/

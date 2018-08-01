@@ -20,6 +20,8 @@ matrix:
   - env: VERSION=7.0 VARIANT=fpm FLAVOR=cherry-nr
   - env: VERSION=7.1 VARIANT=fpm FLAVOR=mango
   - env: VERSION=7.1 VARIANT=fpm FLAVOR=mango-nr
+  - env: VERSION=7.2 VARIANT=fpm FLAVOR=ripple
+  - env: VERSION=7.2 VARIANT=fpm FLAVOR=ripple-nr
 install:
 - docker build -t "mandic/php:${VERSION}-${VARIANT}-${FLAVOR}" ${VERSION}-${VARIANT}/${FLAVOR}
 script:

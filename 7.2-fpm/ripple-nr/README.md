@@ -1,6 +1,6 @@
-# mandic/php:7.1-fpm-mango-nr
+# mandic/php:7.2-fpm-ripple-nr
 
-PHP-FPM 7.1 with extensions, locales nad newrelic php agent configured.
+PHP-FPM 7.2 with extensions, locales nad newrelic php agent configured.
 
 Extensions from debian repository:
 
@@ -11,7 +11,6 @@ Extensions from debian repository:
 - imap
 - ldap
 - mbstring
-- mcrypt
 - mysqli
 - pcntl
 - pdo_mysql
@@ -29,8 +28,8 @@ Extensions from debian repository:
 Extensions from pecl:
 
 - gnupg-1.4.0
-- memcached-3.0.4 (pecl memcache is not supported in php 7.1)
-- mongodb-1.4.2 (pecl mongo is not supported in php 7.1)
+- memcached-3.0.4 (pecl memcache is not supported in php 7.2)
+- mongodb-1.4.2 (pecl mongo is not supported in php 7.2)
 - xdebug-2.5.5
 - zip-1.13.5
 
