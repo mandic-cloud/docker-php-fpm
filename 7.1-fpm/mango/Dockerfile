@@ -26,14 +26,19 @@ RUN apt-get update && apt-get install -y \
         vim \
         wget \
         zip \
-        zlib1g-dev
+        zlib1g-dev \
+        libpng-dev \
+        libfreetype6-dev \
+        libjpeg-dev \
+        libxpm-dev \
+        libwebp-dev
 
 # https://bugs.php.net/bug.php?id=49876
 RUN ln -fs /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/
 
 RUN echo "Installing PHP extensions" \
     && docker-php-ext-install iconv mcrypt gd pdo_mysql pdo_pgsql pcntl bcmath simplexml xmlrpc soap pspell ldap mbstring mysqli pgsql sysvmsg sysvsem sysvshm gettext \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-xpm-dir=/usr/include/ --with-webp-dir=/usr/include/ \
     && docker-php-ext-enable iconv mcrypt gd pdo_mysql pdo_pgsql pcntl bcmath simplexml xmlrpc soap pspell ldap mbstring mysqli pgsql sysvmsg sysvsem sysvshm gettext
 
 RUN pecl install xdebug-2.5.5 \
