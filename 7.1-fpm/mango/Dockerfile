@@ -8,12 +8,10 @@ RUN apt-get update && apt-get install -y \
         git \
         libcurl3-dev \
         libedit-dev \
-        libfreetype6-dev \
         libjpeg62-turbo-dev \
         libldap2-dev \
         libmcrypt-dev \
-        libmysqlclient18 \
-        libpng12-dev \
+        default-libmysqlclient-dev \        
         libpq-dev \
         libpspell-dev \
         libsqlite3-dev \
